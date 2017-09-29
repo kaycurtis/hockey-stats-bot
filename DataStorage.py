@@ -34,6 +34,8 @@ class DataCache:
 
         if row_with_player:
             return self.get_stats(row_with_player)
+        else:
+            return None
 
     def get_stats(self,row):
         player_link = row.select("a")[0]["href"]

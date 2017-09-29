@@ -1,1 +1,1 @@
-# hockey-stats-bot
+# Hockey Stats Bot
