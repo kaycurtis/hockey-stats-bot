@@ -1,11 +1,14 @@
-from selenium import webdriver
-import PlayerStatistics
-import DataStorage
-import config
-import praw
 import re
 import time
+
+import praw
+from selenium import webdriver
+
 import CommentHistory
+import DataStorage
+import config
+
+from PlayerStatsData import GoalieStatistics,SkaterStatistics
 
 data_storage = None
 comment_history = None
@@ -38,7 +41,6 @@ def parse_comment(body, comment):
     for word in words_in_comment[1:]:
         if not get_player_stats(word) is None:
             comment.reply(print_stats(get_player_stats(word)))
-            return
 
 def get_player_stats(name):
     if data_storage is None or data_storage.is_expired():
@@ -47,8 +49,12 @@ def get_player_stats(name):
     return stats
 
 def print_stats(stats):
-    return (stats.get_name() + " has scored " + str(stats.get_goals()) + " goals and " + str(stats.get_assists()) + " assists in "
+    if isinstance(stats, SkaterStatistics.SkaterStatistics):
+        return (stats.get_name() + " has scored " + str(stats.get_goals()) + " goals and " + str(stats.get_assists()) + " assists in "
           + str(stats.get_games_played()) + " games for the " + stats.get_team() + " this year, for a total of " + str(stats.get_points()) + " points.")
+    elif isinstance(stats, GoalieStatistics.GoalieStatistics):
+        return stats.get_name() + " has played " + str(stats.get_games_played()) + " games this year for the " + stats.get_team() + \
+               ", with a goals against average of " + str(stats.get_gaa()) + " and a " + str(stats.get_save_percentage()) + " save percentage."
 
 reddit = bot_login()
 while True:
