@@ -315,3 +315,119 @@ JavaScript warning: https://www-league.nhlstatic.com/builds/site-core/ab18a010b2
 
 ###!!! [Parent][MessageChannel] Error: (msgtype=0x280080,name=PBrowser::Msg_Destroy) Channel error: cannot send/recv
 
+1506915882878	geckodriver	INFO	geckodriver 0.19.0
+1506915882883	geckodriver	INFO	Listening on 127.0.0.1:45218
+1506915884042	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-profile" "/tmp/rust_mozprofile.SDecvf89C6Ea"
+1506915884895	Marionette	INFO	Enabled via --marionette
+1506915887100	Marionette	INFO	Listening on port 35438
+JavaScript error: chrome://marionette/content/server.js, line 337: NS_ERROR_SOCKET_ADDRESS_IN_USE: Component returned failure code: 0x804b0036 (NS_ERROR_SOCKET_ADDRESS_IN_USE) [nsIServerSocket.initSpecialConnection]
+1506915887171	Marionette	WARN	TLS certificate errors will be ignored for this session
+1506915887252	Marionette	DEBUG	loaded listener.js
+1506915887372	Marionette	DEBUG	Received DOM event "beforeunload" for "about:blank"
+1506915887718	Marionette	DEBUG	Received DOM event "pagehide" for "about:blank"
+1506915887720	Marionette	DEBUG	Received DOM event "unload" for "about:blank"
+JavaScript warning: https://www-league.nhlstatic.com/builds/site-core/ab18a010b2f1caae5dff889632fc62553aa2cf52_1506371293/scripts/site-core.js.gz, line 26: Using //@ to indicate sourceMappingURL pragmas is deprecated. Use //# instead
+1506915888522	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://www.nhl.com/canucks/stats"
+1506915888717	Marionette	DEBUG	Received DOM event "pageshow" for "https://www.nhl.com/canucks/stats"
+1506915889338	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://frames.canucks.com/twitter/canucks.html"
+1506915890277	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://mlb.demdex.net/dest5.html?d_nsid=0#https%3A%2F%2Fwww.nhl.com%2Fcanucks%2Fstats"
+1506915890306	Marionette	DEBUG	Received DOM event "pageshow" for "https://mlb.demdex.net/dest5.html?d_nsid=0#https%3A%2F%2Fwww.nhl.com%2Fcanucks%2Fstats"
+[Parent 16967] WARNING: pipe error (50): Connection reset by peer: file /build/firefox-S0wyi8/firefox-55.0.2+build1/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+
+###!!! [Parent][MessageChannel] Error: (msgtype=0x800017,name=PHttpChannel::Msg_DeleteSelf) Channel error: cannot send/recv
+
+
+###!!! [Parent][MessageChannel] Error: (msgtype=0x800017,name=PHttpChannel::Msg_DeleteSelf) Channel error: cannot send/recv
+
+
+###!!! [Parent][MessageChannel] Error: (msgtype=0x800017,name=PHttpChannel::Msg_DeleteSelf) Channel error: cannot send/recv
+
+
+###!!! [Parent][MessageChannel] Error: (msgtype=0x800017,name=PHttpChannel::Msg_DeleteSelf) Channel error: cannot send/recv
+
+
+###!!! [Parent][MessageChannel] Error: (msgtype=0x800017,name=PHttpChannel::Msg_DeleteSelf) Channel error: cannot send/recv
+
+
+###!!! [Parent][MessageChannel] Error: (msgtype=0x800017,name=PHttpChannel::Msg_DeleteSelf) Channel error: cannot send/recv
+
+
+###!!! [Parent][MessageChannel] Error: (msgtype=0x800017,name=PHttpChannel::Msg_DeleteSelf) Channel error: cannot send/recv
+
+
+###!!! [Parent][MessageChannel] Error: (msgtype=0x800017,name=PHttpChannel::Msg_DeleteSelf) Channel error: cannot send/recv
+
+
+###!!! [Parent][MessageChannel] Error: (msgtype=0x800017,name=PHttpChannel::Msg_DeleteSelf) Channel error: cannot send/recv
+
+
+###!!! [Parent][MessageChannel] Error: (msgtype=0x800017,name=PHttpChannel::Msg_DeleteSelf) Channel error: cannot send/recv
+
+
+###!!! [Parent][MessageChannel] Error: (msgtype=0x800017,name=PHttpChannel::Msg_DeleteSelf) Channel error: cannot send/recv
+
+
+###!!! [Parent][MessageChannel] Error: (msgtype=0x800017,name=PHttpChannel::Msg_DeleteSelf) Channel error: cannot send/recv
+
+
+###!!! [Parent][MessageChannel] Error: (msgtype=0x800017,name=PHttpChannel::Msg_DeleteSelf) Channel error: cannot send/recv
+
+
+###!!! [Parent][MessageChannel] Error: (msgtype=0x800017,name=PHttpChannel::Msg_DeleteSelf) Channel error: cannot send/recv
+
+
+###!!! [Parent][MessageChannel] Error: (msgtype=0x800017,name=PHttpChannel::Msg_DeleteSelf) Channel error: cannot send/recv
+
+
+###!!! [Parent][MessageChannel] Error: (msgtype=0x800017,name=PHttpChannel::Msg_DeleteSelf) Channel error: cannot send/recv
+
+
+###!!! [Parent][MessageChannel] Error: (msgtype=0x800017,name=PHttpChannel::Msg_DeleteSelf) Channel error: cannot send/recv
+
+
+###!!! [Parent][MessageChannel] Error: (msgtype=0x800017,name=PHttpChannel::Msg_DeleteSelf) Channel error: cannot send/recv
+
+
+###!!! [Parent][MessageChannel] Error: (msgtype=0x800017,name=PHttpChannel::Msg_DeleteSelf) Channel error: cannot send/recv
+
+
+###!!! [Parent][MessageChannel] Error: (msgtype=0x800017,name=PHttpChannel::Msg_DeleteSelf) Channel error: cannot send/recv
+
+
+###!!! [Parent][MessageChannel] Error: (msgtype=0x800017,name=PHttpChannel::Msg_DeleteSelf) Channel error: cannot send/recv
+
+
+###!!! [Parent][MessageChannel] Error: (msgtype=0x800017,name=PHttpChannel::Msg_DeleteSelf) Channel error: cannot send/recv
+
+
+###!!! [Parent][MessageChannel] Error: (msgtype=0x800017,name=PHttpChannel::Msg_DeleteSelf) Channel error: cannot send/recv
+
+
+###!!! [Parent][MessageChannel] Error: (msgtype=0x800017,name=PHttpChannel::Msg_DeleteSelf) Channel error: cannot send/recv
+
+
+###!!! [Parent][MessageChannel] Error: (msgtype=0x280080,name=PBrowser::Msg_Destroy) Channel error: cannot send/recv
+
+1506916063224	geckodriver	INFO	geckodriver 0.19.0
+1506916063232	geckodriver	INFO	Listening on 127.0.0.1:44503
+1506916064378	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "-marionette" "-profile" "/tmp/rust_mozprofile.hilIz9ItEA0J"
+1506916065186	Marionette	INFO	Enabled via --marionette
+1506916067181	Marionette	INFO	Listening on port 38146
+JavaScript error: chrome://marionette/content/server.js, line 337: NS_ERROR_SOCKET_ADDRESS_IN_USE: Component returned failure code: 0x804b0036 (NS_ERROR_SOCKET_ADDRESS_IN_USE) [nsIServerSocket.initSpecialConnection]
+1506916067204	Marionette	WARN	TLS certificate errors will be ignored for this session
+1506916067284	Marionette	DEBUG	loaded listener.js
+1506916067406	Marionette	DEBUG	Received DOM event "beforeunload" for "about:blank"
+1506916067564	Marionette	DEBUG	Received DOM event "pagehide" for "about:blank"
+1506916067564	Marionette	DEBUG	Received DOM event "unload" for "about:blank"
+JavaScript warning: https://www-league.nhlstatic.com/builds/site-core/ab18a010b2f1caae5dff889632fc62553aa2cf52_1506371293/scripts/site-core.js.gz, line 26: Using //@ to indicate sourceMappingURL pragmas is deprecated. Use //# instead
+1506916068234	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://www.nhl.com/canucks/stats"
+1506916069002	Marionette	DEBUG	Received DOM event "pageshow" for "https://www.nhl.com/canucks/stats"
+
+###!!! [Parent][MessageChannel] Error: (msgtype=0xFC0001,name=PVsync::Msg_Notify) Channel error: cannot send/recv
+
+
+###!!! [Parent][MessageChannel] Error: (msgtype=0x800011,name=PHttpChannel::Msg_OnStartRequest) Channel error: cannot send/recv
+
+
+###!!! [Parent][MessageChannel] Error: (msgtype=0x280080,name=PBrowser::Msg_Destroy) Channel error: cannot send/recv
+

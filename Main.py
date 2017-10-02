@@ -30,9 +30,12 @@ def run_bot(reddit):
         time.sleep(10)
 
 def new_data_storage():
-    display = Display(visible=0, size=(1366, 768))
+    display = Display(visible=0, size=(800,600))
     display.start()
-    driver = webdriver.Firefox()
+    options = webdriver.ChromeOptions()
+    options.add_argument('--no-sandbox')
+
+    driver = webdriver.Chrome(chrome_options=options)
     driver.set_window_size(1366, 768)
     driver.get("https://www.nhl.com/canucks/stats")
     html = driver.page_source
