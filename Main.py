@@ -3,6 +3,7 @@ import time
 
 import praw
 from selenium import webdriver
+from pyvirtualdisplay import Display
 
 import CommentHistory
 import DataStorage
@@ -29,10 +30,14 @@ def run_bot(reddit):
         time.sleep(10)
 
 def new_data_storage():
-    driver = webdriver.Safari()
+    display = Display(visible=0, size=(1366, 768))
+    display.start()
+    driver = webdriver.Firefox()
+    driver.set_window_size(1366, 768)
     driver.get("https://www.nhl.com/canucks/stats")
     html = driver.page_source
     driver.quit()
+    display.stop()
     global data_storage
     data_storage = DataStorage.DataCache(html)
 
