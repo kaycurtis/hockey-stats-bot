@@ -9,6 +9,8 @@ import CommentHistory
 import DataStorage
 import config
 
+import sys
+
 from PlayerStatsData import GoalieStatistics,SkaterStatistics
 
 data_storage = None
@@ -30,24 +32,30 @@ def run_bot(reddit):
         time.sleep(10)
 
 def new_data_storage():
-    display = Display(visible=0, size=(800,600))
-    display.start()
-    options = webdriver.ChromeOptions()
-    options.add_argument('--no-sandbox')
+    os = sys.platform
 
-    driver = webdriver.Chrome(chrome_options=options)
-    driver.set_window_size(1366, 768)
+    if os == "linux2":
+        display = Display(visible=0, size=(800,600))
+        display.start()
+        options = webdriver.ChromeOptions()
+        options.add_argument('--no-sandbox')
+        driver = webdriver.Chrome(chrome_options=options)
+        driver.set_window_size(1366, 768)
+    elif os == "darwin":
+        driver = webdriver.Safari()
     driver.get("https://www.nhl.com/canucks/stats")
     html = driver.page_source
     driver.quit()
-    display.stop()
+    if os == "linux2":
+        display.stop()
     global data_storage
     data_storage = DataStorage.DataCache(html)
 
 def parse_comment(body, comment):
     words_in_comment = re.sub("[^\w]", " ", body).split()
-    for word in words_in_comment[1:]:
-        if not get_player_stats(word) is None:
+    for word in words_in_comment:
+        if word != "stats" and not get_player_stats(word) is None:
+            print("Found a match for word" + word)
             comment.reply(print_stats(get_player_stats(word)))
 
 def get_player_stats(name):
