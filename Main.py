@@ -34,7 +34,7 @@ def run_bot(reddit):
 def new_data_storage():
     os = sys.platform
 
-    if os == "linux2":
+    if os == "linux":
         display = Display(visible=0, size=(800,600))
         display.start()
         options = webdriver.ChromeOptions()
@@ -75,3 +75,4 @@ def print_stats(stats):
 reddit = bot_login()
 while True:
     run_bot(reddit)
+
