@@ -46,17 +46,21 @@ def new_data_storage():
     driver.get("https://www.nhl.com/canucks/stats")
     html = driver.page_source
     driver.quit()
-    if os == "linux2":
+    if os == "linux":
         display.stop()
     global data_storage
     data_storage = DataStorage.DataCache(html)
 
 def parse_comment(body, comment):
     words_in_comment = re.sub("[^\w]", " ", body).split()
+    count = {}
     for word in words_in_comment:
-        if word != "stats" and not get_player_stats(word) is None:
-            print("Found a match for word" + word)
-            comment.reply(print_stats(get_player_stats(word)))
+        results = get_player_stats(word)
+        for result in results:
+            count[result] += 1
+        stats_to_return = [key for key,value in count.items() if value == max(count.values()) ]
+        print("Found " + str(len(stats_to_return)) + " results for " + word)
+        comment.reply(print_stats(results))
 
 def get_player_stats(name):
     if data_storage is None or data_storage.is_expired():
@@ -64,13 +68,19 @@ def get_player_stats(name):
     stats = data_storage.get_player_stats(name)
     return stats
 
-def print_stats(stats):
-    if isinstance(stats, SkaterStatistics.SkaterStatistics):
-        return (stats.get_name() + " has scored " + str(stats.get_goals()) + " goals and " + str(stats.get_assists()) + " assists in "
-          + str(stats.get_games_played()) + " games for the " + stats.get_team() + " this year, for a total of " + str(stats.get_points()) + " points.")
-    elif isinstance(stats, GoalieStatistics.GoalieStatistics):
-        return stats.get_name() + " has played " + str(stats.get_games_played()) + " games this year for the " + stats.get_team() + \
-               ", with a goals against average of " + str(stats.get_gaa()) + " and a " + str(stats.get_save_percentage()) + " save percentage."
+def print_stats(list_of_stats):
+    result = ""
+    for stat in list_of_stats:
+        result += print_player_stat(stat)
+    return result
+
+def print_player_stat(stat):
+    if isinstance(stat, SkaterStatistics.SkaterStatistics):
+        return (stat.get_name() + " has scored " + str(stat.get_goals()) + " goals and " + str(stat.get_assists()) + " assists in "
+                + str(stat.get_games_played()) + " games for the " + stat.get_team() + " this year, for a total of " + str(stat.get_points()) + " points.")
+    elif isinstance(stat, GoalieStatistics.GoalieStatistics):
+        return stat.get_name() + " has played " + str(stat.get_games_played()) + " games this year for the " + stat.get_team() + \
+               ", with a goals against average of " + str(stat.get_gaa()) + " and a " + str(stat.get_save_percentage()) + " save percentage."
 
 reddit = bot_login()
 while True:
