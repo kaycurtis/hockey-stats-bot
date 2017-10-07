@@ -15,3 +15,13 @@ class SkaterStatistics(PlayerStatistics):
 
     def get_points(self):
         return self.points
+
+    def __eq__(self, other):
+        if isinstance(other, self.__class__):
+            return (
+            self.goals == other.goals and self.assists == other.assists and super.__eq__(self, other))
+        else:
+            return False
+
+    def __ne__(self, other):
+        return not self.__eq__(other)

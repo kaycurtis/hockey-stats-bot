@@ -21,10 +21,7 @@ class DataCache:
             return False
 
     def get_player_stats(self, name):
-        if self.player_statistics.get(name) is None:
-            return self.parse_skater_stats(name)
-        else:
-            return self.player_statistics.get(name)
+        return self.parse_skater_stats(name)
 
     # returns a list of skater stats and goalie stats matching the given name
     def parse_skater_stats(self, name):
@@ -36,7 +33,7 @@ class DataCache:
         return skater_result + goalie_result
 
     # takes in a table, what kind of stats are in the table, and the name of the player we are searching for
-    # returns a list of player statistics or None
+    # returns a list of player statistics or an empty list
     def search_table(self,table,type,name):
         table_rows = table.select("tbody tr")
         matches = self.check_rows_for_player(table_rows, name)
@@ -45,13 +42,13 @@ class DataCache:
         elif matches and type == "goalie":
             return self.get_goalie_stats(matches)
         else:
-            return None
+            return []
 
     # takes in a list of rows and returns a list of skater statistics objects corresponding to those rows
     def get_skater_stats(self, rows):
         stats = []
         for row in rows:
-            player_link = rows.select("a")[0]["href"]
+            player_link = row.select("a")[0]["href"]
             match = re.match("/player/(\w+)-.*", player_link)
             first_name = match.group(1)
 
@@ -61,7 +58,7 @@ class DataCache:
             name = first_name + " " + last_name
             name = name.title()
 
-            cells = rows.select("td span")[3:]
+            cells = row.select("td span")[3:]
 
             games_played = int(cells[0].get_text())
             goals = int(cells[1].get_text())
@@ -77,7 +74,7 @@ class DataCache:
     def get_goalie_stats(self, rows):
         stats = []
         for row in rows:
-            player_link = rows.select("a")[0]["href"]
+            player_link = row.select("a")[0]["href"]
             match = re.match("/player/(\w+)-.*", player_link)
             first_name = match.group(1)
 
@@ -87,7 +84,7 @@ class DataCache:
             name = first_name + " " + last_name
             name = name.title()
 
-            cells = rows.select("td span")[3:]
+            cells = row.select("td span")[3:]
             games_played = int(cells[0].get_text())
             gaa = float(cells[8].get_text())
             save_percentage = float(cells[10].get_text())
@@ -105,4 +102,4 @@ class DataCache:
             matchObj = re.match(r".*" + name + ".*", player_link)
             if matchObj:
                 matches.append(row)
-        return None
+        return matches

@@ -57,10 +57,14 @@ def parse_comment(body, comment):
     for word in words_in_comment:
         results = get_player_stats(word)
         for result in results:
-            count[result] += 1
-        stats_to_return = [key for key,value in count.items() if value == max(count.values()) ]
-        print("Found " + str(len(stats_to_return)) + " results for " + word)
-        comment.reply(print_stats(results))
+            if result.get_name() in count.keys():
+                count[result] += 1
+            else:
+                count[result] = 0
+    stats_to_return = [key for key,value in count.items() if value == max(count.values()) ]
+    print("Found " + str(len(stats_to_return)) + " results for " + word)
+    #comment.reply(print_stats(results))
+    print(print_stats(stats_to_return))
 
 def get_player_stats(name):
     if data_storage is None or data_storage.is_expired():
@@ -71,7 +75,7 @@ def get_player_stats(name):
 def print_stats(list_of_stats):
     result = ""
     for stat in list_of_stats:
-        result += print_player_stat(stat)
+        result += (print_player_stat(stat) + "\n")
     return result
 
 def print_player_stat(stat):
@@ -82,7 +86,8 @@ def print_player_stat(stat):
         return stat.get_name() + " has played " + str(stat.get_games_played()) + " games this year for the " + stat.get_team() + \
                ", with a goals against average of " + str(stat.get_gaa()) + " and a " + str(stat.get_save_percentage()) + " save percentage."
 
-reddit = bot_login()
-while True:
-    run_bot(reddit)
+#reddit = bot_login()
+#while True:
+#    run_bot(reddit)
 
+parse_comment("henrik sedin", None)

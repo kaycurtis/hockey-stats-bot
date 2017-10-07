@@ -1,6 +1,7 @@
 class CommentHistory:
 
     comments_replied_to = None
+    history_per_post = None
 
     def __init__(self):
         global comments_replied_to
