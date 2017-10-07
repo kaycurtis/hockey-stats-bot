@@ -61,7 +61,8 @@ def parse_comment(body, comment):
                 count[result] += 1
             else:
                 count[result] = 0
-    stats_to_return = [key for key,value in count.items() if value == max(count.values()) ]
+    print(count)
+    stats_to_return = [key for key,value in count.items() if value == max(count.values())]
     print("Found " + str(len(stats_to_return)) + " results for " + word)
     #comment.reply(print_stats(results))
     print(print_stats(stats_to_return))

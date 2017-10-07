@@ -21,3 +21,6 @@ class PlayerStatistics:
 
     def __ne__(self, other):
         return not self.__eq__(other)
+
+    def __hash__(self):
+        return 31*(31*self.games_played + hash(self.name)) + hash(self.team)
