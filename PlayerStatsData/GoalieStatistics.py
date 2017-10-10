@@ -15,7 +15,8 @@ class GoalieStatistics(PlayerStatistics):
 
     def __eq__(self, other):
         if isinstance(other, self.__class__):
-            return (self.save_percentage == other.save_percentage and self.gaa == other.gaa and super(GoalieStatistics, self).__eq__(other))
+            return (self.save_percentage == other.save_percentage and self.gaa == other.gaa and self.name == other.name and
+            self.team == other.team and self.games_played == other.games_played)
         else:
             return False
 
@@ -23,4 +24,4 @@ class GoalieStatistics(PlayerStatistics):
         return not self.__eq__(other)
 
     def __hash__(self):
-        return 31*(31*math.floor(100*self.save_percentage) + math.floor(self.gaa)) + hash(super())
+        return 31*(31*math.floor(100*self.save_percentage) + math.floor(self.gaa)) +  31*(31*self.games_played + hash(self.name)) + hash(self.team)

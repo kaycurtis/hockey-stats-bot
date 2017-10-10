@@ -18,7 +18,8 @@ class SkaterStatistics(PlayerStatistics):
 
     def __eq__(self, other):
         if isinstance(other, self.__class__):
-            return self.goals == other.goals and self.assists == other.assists and super(SkaterStatistics, self).__eq__(other)
+            return (self.goals == other.goals and self.assists == other.assists and self.name == other.name and
+            self.team == other.team and self.games_played == other.games_played)
         else:
             return False
 
@@ -26,5 +27,5 @@ class SkaterStatistics(PlayerStatistics):
         return not self.__eq__(other)
 
     def __hash__(self):
-        return ((self.points*31 + self.assists)*31 + self.games_played)*31 + hash(super())
+        return ((self.points*31 + self.assists)*31 + self.games_played)*31 + 31*(31*self.games_played + hash(self.name)) + hash(self.team)
 

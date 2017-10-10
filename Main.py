@@ -57,13 +57,11 @@ def parse_comment(body, comment):
     for word in words_in_comment:
         results = get_player_stats(word)
         for result in results:
-            if result.get_name() in count.keys():
+            if result in count.keys():
                 count[result] += 1
             else:
                 count[result] = 0
-    print(count)
     stats_to_return = [key for key,value in count.items() if value == max(count.values())]
-    print("Found " + str(len(stats_to_return)) + " results for " + word)
     #comment.reply(print_stats(results))
     print(print_stats(stats_to_return))
 
@@ -91,4 +89,4 @@ def print_player_stat(stat):
 #while True:
 #    run_bot(reddit)
 
-parse_comment("henrik sedin", None)
+parse_comment("sedin", None)
