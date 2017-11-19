@@ -2,6 +2,7 @@ import re
 import time
 
 import praw
+import prawcore.exceptions
 from praw.exceptions import APIException
 
 from project import config, StatFormatter
@@ -19,12 +20,16 @@ def bot_login():
 
 def run_bot(reddit):
     comment_history = CommentHistory.CommentHistory()
-    for comment in reddit.subreddit('canucks').comments(limit=25):
-        if "!stats" in comment.body:
-            print(comment.body)
-            if comment_history.should_reply_to_comment(comment):
-                 parse_comment(re.sub("!stats" , "", comment.body), comment)
-                 comment_history.add_comment(comment.submission.id, comment.id, comment.author.id)
+    try:
+        for comment in reddit.subreddit('canucks').comments(limit=25):
+             if "!stats" in comment.body:
+                  print(comment.body)
+                  if comment_history.should_reply_to_comment(comment):
+                      parse_comment(re.sub("!stats" , "", comment.body), comment)
+                      comment_history.add_comment(comment.submission.id, comment.id, comment.author.id)
+    except prawcore.exceptions.ServerError:
+        print("Got a 503, gonna sleep for a bit and try again")
+        time.sleep(60)
 
 def parse_comment(body, comment):
     # Split the individual words in the comment into a list
