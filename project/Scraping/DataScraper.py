@@ -1,12 +1,11 @@
 import re
 import sys
 
-from PlayerStatsData import GoalieStatistics
 from bs4 import BeautifulSoup
 from pyvirtualdisplay import Display
 from selenium import webdriver
 
-from project.PlayerStatsData import SkaterStatistics
+from project.PlayerStatsData import SkaterStatistics, GoalieStatistics
 from project.Scraping import DataCache
 
 
@@ -14,11 +13,11 @@ class DataScraper:
     def __init__(self):
         self.data_cache = DataCache.DataCache(self.scrape())
 
-    def parse_skater_stats(self, name):
+    def find_stats_matching_word(self, name):
         # update the data if necessary
         if self.data_cache.is_expired():
             self.data_cache = DataCache.DataCache(self.scrape())
-        soup = BeautifulSoup(self.html, "html.parser")
+        soup = BeautifulSoup(self.data_cache.html, "html.parser")
         skater_table = soup.find(id="skater-table")
         goalie_table = soup.find(id="goalie-table")
         skater_result = self.search_table(skater_table, "skater", name)
@@ -73,8 +72,10 @@ class DataScraper:
     def check_rows_for_player(self, rows, name):
         matches = []
         for row in rows:
-            player_link = row.select("a")[0]["href"]    # currently the link to the player's page is the most reliable place to look for a name
-            matchObj = re.match(r".*" + name + ".*", player_link)
+            player_link = row.select("a")[0]["href"]
+            matchObj = re.match(r".*/" + name + "-.*", player_link) # try to match first name
+            if not matchObj:
+                matchObj = re.match(r".*-" + name + "-.*", player_link)  # try to match last name
             if matchObj:
                 matches.append(row)
         return matches

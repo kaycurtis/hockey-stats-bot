@@ -1,7 +1,6 @@
 import datetime
 
 class DataCache:
-
     def __init__(self, html):
         self.date_created = datetime.datetime.now()
         self.html = html
