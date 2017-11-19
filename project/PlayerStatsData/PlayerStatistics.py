@@ -1,3 +1,4 @@
+#TODO so it turns out python doesn't really use getters & setters. Come back and fix this.
 class PlayerStatistics:
     def __init__(self, name, team, games_played):
         self.name = name

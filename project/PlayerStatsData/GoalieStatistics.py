@@ -1,6 +1,9 @@
-from PlayerStatsData.PlayerStatistics import PlayerStatistics
 import math
 
+from project.PlayerStatsData.PlayerStatistics import PlayerStatistics
+
+
+#TODO so it turns out python doesn't really use getters & setters. Come back and fix this.
 class GoalieStatistics(PlayerStatistics):
     def __init__(self,name,team,games_played,save_percentage,gaa):
         super().__init__(name,team,games_played)
