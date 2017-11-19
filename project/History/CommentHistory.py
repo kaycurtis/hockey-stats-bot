@@ -13,8 +13,8 @@ class CommentHistory:
         # Redis data is stored in format [post_id, blob] where blob is a yaml encoded instance of PostHistoryData
         self.redis_instance = redis.StrictRedis(host=config.redis_ip, password=config.redis_auth)
 
-    def should_reply_to_comment(self, post_id, comment_id, comment_body, user):
-        return not (self.replied_to_comment(post_id, comment_id) or self.too_many_summons(post_id, user) or self.replying_to_bot(comment_body))
+    def should_reply_to_comment(self, comment):
+        return not (self.replied_to_comment(comment.submission.id, comment.id) or self.too_many_summons(comment.submission.id, comment.author.id) or self.replying_to_bot(comment))
 
     # Determine whether the bot has already replied to a given comment, so as to prevent an infinite loop
     def replied_to_comment(self, post_id, comment_id):
@@ -27,9 +27,12 @@ class CommentHistory:
         return False
 
     # Some guards against bots (obviously should add more later)
-    def replying_to_bot(self, comment_body):
-        if "I'm a bot" in comment_body or "I am a bot" in comment_body:
+    def replying_to_bot(self, comment):
+        if "I'm a bot" in comment.body or "I am a bot" in comment.body:
             print("There is a good chance this comment was made by a bot. Skipping it.")
+            return True
+        if comment.author.name == "hockeystats_beepboop":
+            print("Trying to reply to yourself!")
             return True
         return False
 

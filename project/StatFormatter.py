@@ -3,9 +3,7 @@ from project.PlayerStatsData import SkaterStatistics, GoalieStatistics
 def print_stats(list_of_stats):
     result = ""
     if not list_of_stats:
-        result = "It looks like you were trying to summon me, but I didn't find any players matching your comment! I'm not smart enough to " \
-               "correct your spelling, so double-check that you got the player name right. For example: '!stats henrik' or '!stats megna sutter loui' " \
-               "should summon me, but '!stats besser' won't."
+        result = "It looks like you were trying to summon me, but I couldn't process your comment. You can summon me with the word !stats, followed by the first or last names of the player(s) you'd like to know about."
     for stat in list_of_stats:
         result += (print_player_stat(stat) + "\n\n")
     return result + footer()

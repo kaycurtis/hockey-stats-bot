@@ -19,10 +19,10 @@ def bot_login():
 
 def run_bot(reddit):
     comment_history = CommentHistory.CommentHistory()
-    for comment in reddit.subreddit('test').comments(limit=25):
+    for comment in reddit.subreddit('canucks').comments(limit=25):
         if "!stats" in comment.body:
             print(comment.body)
-            if comment_history.should_reply_to_comment(comment.submission.id, comment.id, comment.body, comment.author.id):
+            if comment_history.should_reply_to_comment(comment):
                  parse_comment(re.sub("!stats" , "", comment.body), comment)
                  comment_history.add_comment(comment.submission.id, comment.id, comment.author.id)
 
