@@ -22,7 +22,6 @@ class CommentHistory:
         if yaml_blob is not None:
             post_history_data = yaml.load(yaml_blob)
             if comment_id in post_history_data.comments:
-                print("Already replied to this comment")
                 return True
         return False
 
@@ -32,7 +31,6 @@ class CommentHistory:
             print("There is a good chance this comment was made by a bot. Skipping it.")
             return True
         if comment.author.name == "hockeystats_beepboop":
-            print("Trying to reply to yourself!")
             return True
         return False
 
